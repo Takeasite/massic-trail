@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ========================================================== -->
+  <!-- TITRE DE L'ONGLET et SEO de base                            -->
+  <!-- ========================================================== -->
+  <title>Massic Trail · VTT Descente à Conquereuil</title>
+  <meta name="description" content="Massic Trail, club de VTT de descente à Conquereuil en Loire-Atlantique. Pistes pour tous les niveaux, débutants et confirmés.">
+
+  <!-- Polices Google Fonts : Anton pour les titres (épais, énergique), Inter pour le texte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================ */
+    /* VARIABLES : la palette validée avec Thibault                 */
+    /* ============================================================ */
+    :root {
+      --orange: #EB521A;
+      --orange-clair: #FF7039;
+      --noir: #1A0F08;
+      --marron: #2C1A0E;
+      --gris: #A8AB9E;
+      --gris-clair: #E8E6E2;
+      --blanc: #FAFAF9;
+    }
+
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--noir);
+      color: var(--blanc);
+      line-height: 1.7;
+    }
+
+    /* Tous les titres en Anton, gros, énergique */
+    h1, h2, h3 {
+      font-family: 'Anton', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================================ */
+    /* NAVIGATION (en haut, sticky)                                  */
+    /* ============================================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(26, 15, 8, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.6rem;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    .nav-liens {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-liens a {
+      color: var(--blanc);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-liens a:hover {
+      color: var(--orange);
+    }
+
+    /* ============================================================ */
+    /* HERO (la grande section d'accueil)                            */
+    /* ============================================================ */
+    .hero {
+      min-height: 90vh;
+      background:
+        linear-gradient(rgba(26, 15, 8, 0.7), rgba(26, 15, 8, 0.9)),
+        linear-gradient(135deg, var(--orange) 0%, var(--marron) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      position: relative;
+    }
+
+    /* PLACEHOLDER : ici, plus tard, on mettra une vraie photo d'un rider en action */
+    /* Pour la mettre : remplace les 2 lignes "background" par :                   */
+    /* background: linear-gradient(rgba(26,15,8,0.6), rgba(26,15,8,0.9)),          */
+    /*             url('photos/hero-rider.jpg') center/cover;                      */
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      color: var(--orange);
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero .sous-titre {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: var(--gris-clair);
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--blanc);
+      padding: 18px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.2s;
+      border: 2px solid var(--orange);
+    }
+
+    .hero-cta:hover {
+      background: transparent;
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================ */
+    /* SECTIONS génériques                                           */
+    /* ============================================================ */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-claire { background: var(--blanc); color: var(--noir); }
+    .section-sombre { background: var(--noir); color: var(--blanc); }
+    .section-marron { background: var(--marron); color: var(--blanc); }
+
+    .titre-section {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 16px;
+      color: var(--orange);
+    }
+
+    .titre-section + .intro-section {
+      font-size: 1.1rem;
+      margin-bottom: 50px;
+      max-width: 700px;
+      color: var(--gris);
+    }
+
+    .section-claire .titre-section + .intro-section {
+      color: var(--marron);
+    }
+
+    /* ============================================================ */
+    /* SECTION A : Présentation de l'association                     */
+    /* ============================================================ */
+    .presentation-texte {
+      max-width: 800px;
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    .presentation-texte p {
+      margin-bottom: 20px;
+    }
+
+    /* ============================================================ */
+    /* SECTION B : Les différents niveaux                            */
+    /* ============================================================ */
+    .niveaux {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .niveau-card {
+      background: var(--marron);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      border: 1px solid rgba(235, 82, 26, 0.2);
+    }
+
+    .niveau-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--orange);
+    }
+
+    /* PLACEHOLDER image : à remplacer par une vraie photo */
+    .niveau-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--marron) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .niveau-card.debutant .niveau-image { background: linear-gradient(135deg, #4CAF50, var(--marron)); }
+    .niveau-card.intermediaire .niveau-image { background: linear-gradient(135deg, var(--orange), var(--marron)); }
+    .niveau-card.pro .niveau-image { background: linear-gradient(135deg, #D32F2F, var(--marron)); }
+
+    .niveau-contenu {
+      padding: 30px;
+    }
+
+    .niveau-contenu h3 {
+      font-size: 1.8rem;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    /* ============================================================ */
+    /* SECTION C : Nos membres                                       */
+    /* ============================================================ */
+    .membres {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .membre-card {
+      background: var(--gris-clair);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .membre-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .membre-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--orange), var(--marron));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border: 3px solid var(--orange);
+    }
+
+    .membre-card h4 {
+      color: var(--marron);
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .membre-card p {
+      color: var(--gris);
+      font-size: 0.9rem;
+    }
+
+    /* ============================================================ */
+    /* SECTION D : Galerie photos                                    */
+    /* ============================================================ */
+    .galerie {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .photo-item {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, var(--orange), var(--marron));
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .photo-item img {
+  width: 100%;        
+  height: 100%;       
+  object-fit: cover; 
+}
+
+  .niveau-image img {
+  width: 100%;        
+  height: 100%;       
+  object-fit: cover; 
+}
+
+    .photo-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(235, 82, 26, 0.3);
+    }
+
+    /* ============================================================ */
+    /* SECTION E : Nous suivre et contact                            */
+    /* ============================================================ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(235, 82, 26, 0.2);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--orange);
+      background: rgba(235, 82, 26, 0.1);
+    }
+
+    .contact-card .icone {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-card h4 {
+      color: var(--orange);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card a {
+      color: var(--blanc);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-card a:hover {
+      color: var(--orange);
+    }
+
+    /* ============================================================ */
+    /* SECTION F : Rejoindre le club                                 */
+    /* ============================================================ */
+    .rejoindre {
+      text-align: center;
+      background: linear-gradient(135deg, var(--orange), #C73E0D);
+      padding: 100px 24px;
+    }
+
+    .rejoindre h2 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      color: var(--blanc);
+      margin-bottom: 24px;
+    }
+
+    .rejoindre p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .rejoindre-cta {
+      display: inline-block;
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 20px 50px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: transform 0.2s;
+    }
+
+    .rejoindre-cta:hover {
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================ */
+    /* FOOTER                                                        */
+    /* ============================================================ */
+    footer {
+      background: var(--noir);
+      color: var(--gris);
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .photo-item img,
+.niveau-image img,
+.membre-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.membre-photo {
+  overflow: hidden;
+}
+
+.contact-card .icone img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+    /* ============================================================ */
+    /* RESPONSIVE MOBILE                                             */
+    /* ============================================================ */
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+
+      .nav-inner { flex-direction: column; gap: 12px; }
+      .nav-liens { gap: 16px; justify-content: center; font-size: 0.85rem; }
+
+      .hero { min-height: 70vh; padding: 40px 20px; }
+      .hero .sous-titre { font-size: 1.05rem; }
+      .hero-cta { padding: 14px 28px; font-size: 0.95rem; }
+
+      .presentation-texte { font-size: 1rem; }
+
+      .membre-photo { width: 90px; height: 90px; font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================== -->
+  <!-- NAVIGATION                                                  -->
+  <!-- ========================================================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Massic Trail</a>
+      <ul class="nav-liens">
+        <li><a href="#association">L'asso</a></li>
+        <li><a href="#niveaux">Niveaux</a></li>
+        <li><a href="#membres">Membres</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#rejoindre">Rejoindre</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========================================================== -->
+  <!-- HERO                                                        -->
+  <!-- ========================================================== -->
+  <header class="hero">
+    <div>
+      <h1>Massic Trail</h1>
+      <p class="sous-titre">
+        VTT Descente à Conquereuil, Loire-Atlantique. Si tu cherches l'adrénaline, prends ton casque et viens, on n'attend que toi.
+      </p>
+      <a href="#rejoindre" class="hero-cta">Nous rejoindre</a>
+    </div>
+  </header>
+
+  <!-- ========================================================== -->
+  <!-- SECTION A : PRÉSENTATION DE L'ASSOCIATION                   -->
+  <!-- Texte écrit par Thibault, corrigé pour les fautes.          -->
+  <!-- À relire en code review pour qu'il voie les corrections.    -->
+  <!-- ========================================================== -->
+  <section id="association" class="section-sombre">
+    <div class="container">
+      <h2 class="titre-section">L'association</h2>
+      <p class="intro-section">Qui sommes-nous, ce qu'on fait, et pourquoi tu vas adorer.</p>
+
+      <div class="presentation-texte">
+        <p>
+          Toi aussi tu es à la recherche d'adrénaline et de sensations fortes ? Tu es au bon endroit. Cet espace est un véritable havre de paix qui va te permettre de te ressourcer tout en progressant. Un véritable terrain de jeu pour les riders, accessible à tous, quels que soient ton âge ou ton niveau.
+        </p>
+        <p>
+          Notre club rassemble des riders passionnés et bienveillants, que tu sois un débutant qui découvre le VTT ou un rider confirmé pour qui le vélo n'a presque plus de secrets. Les pistes sont aménagées avec soin et proposent plusieurs niveaux de difficulté, du petit pump track aux énormes bosses.
+        </p>
+        <p>
+          Seul, entre amis, ou en famille, le Massic Trail a quelque chose à offrir à chacun. Alors n'attends plus, prends ton casque et rejoins-nous à Conquereuil au Massic Trail, on n'attend que toi.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECTION B : LES DIFFÉRENTS NIVEAUX                          -->
+  <!-- ========================================================== -->
+  <section id="niveaux" class="section-marron">
+    <div class="container">
+      <h2 class="titre-section">Les différents niveaux</h2>
+      <p class="intro-section">Trois niveaux de pistes, pour que chacun trouve son rythme et progresse à son tempo.</p>
+
+      <div class="niveaux">
+
+        <div class="niveau-card debutant">
+          <!-- PLACEHOLDER : remplacer par <img src="photos/piste-debutant.jpg" alt="Piste débutant"> -->
+          <div class="niveau-image"><img src="debutant.jpg" alt="Piste débutant"/></div>
+          <div class="niveau-contenu">
+            <h3>Débutant</h3>
+            <p>Cet espace est accessible a tous les ages et pour tout tipe de niveau, il est parfait pour s'entrainé ou fair debuter son plus jeune.</p>
+          </div>
+        </div>
+
+        <div class="niveau-card intermediaire">
+          <div class="niveau-image"><img src="intermediaire.png" alt="Piste intermediaire"/></div>
+          <div class="niveau-contenu">
+            <h3>Intermédiaire</h3>
+            <p>Cette piste est parfaite pour envoyer ces premier saut et ce metre en confiance pour le reste du terrain, elle est accessible a tout ages.</p>
+          </div>
+        </div>
+
+        <div class="niveau-card pro">
+          <div class="niveau-image"><img src="confirme.png" alt="Piste confirme"/></div>
+          <div class="niveau-contenu">
+            <h3>Confirmé</h3>
+            <p>Pour cette piste il va faloir avoire deja des bases solide en VTTet ne pas avoire le vertige</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECTION C : NOS MEMBRES                                     -->
+  <!-- ========================================================== -->
+  <section id="membres" class="section-claire">
+    <div class="container">
+      <h2 class="titre-section">Nos riders</h2>
+      <p class="intro-section">Les passionnés qui font vivre le Massic Trail au quotidien.</p>
+
+      <div class="membres">
+
+        <!-- À COMPLÉTER : dupliquer ce bloc pour chaque membre -->
+        <!-- IMPORTANT : accord parental nécessaire pour les mineurs avant publication -->
+
+        <div class="membre-card">
+          <img src="rider.jpg" class="membre-photo" alt="rider"/>
+          <h4>Thibault & Oscar</h4>
+          <p>Rider</p>
+        </div>
+
+        <div class="membre-card">
+          <div class="membre-photo">🚵</div>
+          <h4>Nom du membre</h4>
+          <p>Rôle ou niveau</p>
+        </div>
+
+        <div class="membre-card">
+          <div class="membre-photo">🚵</div>
+          <h4>Nom du membre</h4>
+          <p>Rôle ou niveau</p>
+        </div>
+
+        <div class="membre-card">
+          <div class="membre-photo">🚵</div>
+          <h4>Nom du membre</h4>
+          <p>Rôle ou niveau</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECTION D : GALERIE PHOTOS                                  -->
+  <!-- ========================================================== -->
+  <section id="galerie" class="section-sombre">
+    <div class="container">
+      <h2 class="titre-section">Nos photos</h2>
+      <p class="intro-section">Riders, sauts, ambiance. Bienvenue dans notre quotidien.</p>
+
+      <div class="galerie">
+        <!-- À REMPLIR : chaque div devient une vraie image -->
+        <!-- Format à utiliser : <img src="photos/galerie-1.jpg" alt="Description"> -->
+        <div class="photo-item"><img src="debutant.jpg" alt="piste debutant"/></div>
+        <div class="photo-item"><img src="shape.jpg" alt="shape"/></div>
+        <div class="photo-item"><img src="saut.jpg" alt="saut"/></div>
+        <div class="photo-item"><img src="jump.jpg" alt="jump"/></div>
+        <div class="photo-item"><img src="equipe.jpg" alt="equipe"/></div>
+        <div class="photo-item"><img src="trix.jpg" alt="trix"/></div>
+        <div class="photo-item"><img src="flip.jpg" alt="flip"/></div>
+        <div class="photo-item"><img src="VTT.jpg" alt="VTT"/></div>
+        <div class="photo-item"><img src="detante.jpg" alt="detante"/></div>
+        <div class="photo-item"><img src="extreme.jpg" alt="extrème"/></div>
+        <div class="photo-item"><img src="aigle.jpg" alt="aigle"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECTION E : NOUS SUIVRE ET CONTACT                          -->
+  <!-- ========================================================== -->
+  <section id="contact" class="section-marron">
+    <div class="container">
+      <h2 class="titre-section">Nous suivre et nous contacter</h2>
+      <p class="intro-section">Toutes les façons de rester en contact avec le club.</p>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <div class="icone"><img src="13.png"/></div>
+          <h4>Instagram</h4>
+          <a href="https://instagram.com/massic_trail" target="_blank" rel="noopener">@massic_trail</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="icone"><img src="14.png"/></div>
+          <h4>Facebook</h4>
+          <a href="https://facebook.com/MassicTrail" target="_blank" rel="noopener">@Massic Trail</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="icone"><img src="16.png"/></div>
+          <h4>Téléphone</h4>
+          <a href="tel:+33000000000">À COMPLÉTER</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="icone"><img src="15.png"/></div>
+          <h4>Adresse</h4>
+          <a href="https://www.google.com/maps/place/Massic+trail/@47.6221783,-1.7575766,17z/data=!3m1!4b1!4m6!3m5!1s0x480f6f00097314a1:0x8d1941fc4723a3d7!8m2!3d47.6221783!4d-1.7575766!16s%2Fg%2F11xctcrvg7?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Conquereuil, 44290<br>Loire-Atlantique</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECTION F : REJOINDRE LE CLUB                               -->
+  <!-- ========================================================== -->
+  <section id="rejoindre" class="rejoindre">
+    <h2>Toi aussi, tu veux t'inscrire ?</h2>
+    <p>
+      Si tu n'as pas peur de prendre goût à l'adrénaline et de vouloir y rester, viens nous rencontrer. Le casque, on s'occupe de te montrer où le mettre.
+    </p>
+    <a href="#contact" class="rejoindre-cta">Nous contacter</a>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- FOOTER                                                      -->
+  <!-- ========================================================== -->
+  <footer>
+    <p>
+      © 2026 Massic Trail · Club de VTT Descente à Conquereuil ·
+      <a href="#contact">Contact</a>
+    </p>
+    <p style="margin-top: 8px; font-size: 0.8rem;">
+      Site réalisé par Thibault pendant son stage chez TakeASite.
+    </p>
+  </footer>
+
+</body>
+</html>
